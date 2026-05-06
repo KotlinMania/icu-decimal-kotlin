@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "icu-decimal-kotlin"
+
