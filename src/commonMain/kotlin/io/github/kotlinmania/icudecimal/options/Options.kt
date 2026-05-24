@@ -1,5 +1,9 @@
 // port-lint: source options.rs
+@file:OptIn(kotlin.experimental.ExperimentalObjCRefinement::class)
+
 package io.github.kotlinmania.icudecimal.options
+
+import kotlin.native.HiddenFromObjC
 
 /**
  * Options for [io.github.kotlinmania.icudecimal.DecimalFormatter].
@@ -9,6 +13,7 @@ package io.github.kotlinmania.icudecimal.options
  * A bag of options defining how numbers will be formatted by
  * [io.github.kotlinmania.icudecimal.DecimalFormatter].
  */
+@HiddenFromObjC
 data class DecimalFormatterOptions(
     /**
      * When to render grouping separators.

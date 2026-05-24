@@ -5,10 +5,10 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 4/7 (57.1%)
-- **Function parity:** 10/14 matched (target 13) — 71.4%
-- **Class/type parity:** 7/9 matched (target 12) — 77.8%
-- **Combined symbol parity:** 17/23 matched (target 25) — 73.9%
-- **Average inline-code cosine:** 0.52 (function body across 4 matched files)
+- **Function parity:** 10/14 matched (target 14) — 71.4%
+- **Class/type parity:** 7/9 matched (target 14) — 77.8%
+- **Combined symbol parity:** 17/23 matched (target 28) — 73.9%
+- **Average inline-code cosine:** 0.51 (function body across 4 matched files)
 - **Average documentation cosine:** 0.73 (doc text across 4 matched files)
 - **Cheat-zeroed Files:** 1
 - **Critical Issues:** 2 files with <0.60 function similarity
@@ -64,12 +64,12 @@ Every matched file is listed below with function and type symbol parity.
 ### 4. provider
 
 - **Target:** `provider.Provider`
-- **Similarity:** 0.76
+- **Similarity:** 0.74
 - **Dependents:** 0
-- **Priority Score:** 1102.4
-- **Functions:** 7/7 matched
+- **Priority Score:** 1102.6
+- **Functions:** 7/7 matched (target 8)
 - **Missing functions:** _none_
-- **Types:** 4/4 matched (target 7)
+- **Types:** 4/4 matched (target 9)
 - **Missing types:** _none_
 
 ## Success Criteria
