@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 3/7 (42.9%)
-- **Function parity:** 10/14 matched (target 11) — 71.4%
-- **Class/type parity:** 7/9 matched (target 11) — 77.8%
-- **Combined symbol parity:** 17/23 matched (target 22) — 73.9%
-- **Average inline-code cosine:** 0.69 (function body across 3 matched files)
-- **Average documentation cosine:** 0.84 (doc text across 3 matched files)
-- **Cheat-zeroed Files:** 0
-- **Critical Issues:** 1 files with <0.60 function similarity
+- **Files Present:** 4/7 (57.1%)
+- **Function parity:** 10/14 matched (target 13) — 71.4%
+- **Class/type parity:** 7/9 matched (target 12) — 77.8%
+- **Combined symbol parity:** 17/23 matched (target 25) — 73.9%
+- **Average inline-code cosine:** 0.52 (function body across 4 matched files)
+- **Average documentation cosine:** 0.73 (doc text across 4 matched files)
+- **Cheat-zeroed Files:** 1
+- **Critical Issues:** 2 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -50,7 +50,18 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 2/2 matched
 - **Missing types:** _none_
 
-### 3. provider
+### 3. parts
+
+- **Target:** `parts.Parts [ZERO]`
+- **Similarity:** 0.00
+- **Dependents:** 1
+- **Priority Score:** 1000010.0
+- **Functions:** 0/0 matched (target 2)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+
+### 4. provider
 
 - **Target:** `provider.Provider`
 - **Similarity:** 0.76
