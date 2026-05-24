@@ -149,6 +149,14 @@ data class DecimalSymbolStrs(
 )
 
 /**
+ * Prefix and suffix to apply when a sign is needed.
+ */
+data class SignAffixes(
+    val prefix: String,
+    val suffix: String,
+)
+
+/**
  * Symbols and metadata required for formatting a decimal.
  *
  * This code is considered unstable; it may change at any time, in breaking or
@@ -174,14 +182,20 @@ data class DecimalSymbols(
     /**
      * Return the prefix and suffix for the minus sign.
      */
-    fun minusSignAffixes(): Pair<String, String> =
-        strings.minusSignPrefix to strings.minusSignSuffix
+    fun minusSignAffixes(): SignAffixes =
+        SignAffixes(
+            prefix = strings.minusSignPrefix,
+            suffix = strings.minusSignSuffix,
+        )
 
     /**
      * Return the prefix and suffix for the plus sign.
      */
-    fun plusSignAffixes(): Pair<String, String> =
-        strings.plusSignPrefix to strings.plusSignSuffix
+    fun plusSignAffixes(): SignAffixes =
+        SignAffixes(
+            prefix = strings.plusSignPrefix,
+            suffix = strings.plusSignSuffix,
+        )
 
     /**
      * Return the decimal separator.
