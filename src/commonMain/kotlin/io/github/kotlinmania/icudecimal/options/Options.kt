@@ -1,4 +1,4 @@
-// port-lint: source src/options.rs
+// port-lint: source options.rs
 package io.github.kotlinmania.icudecimal.options
 
 /**

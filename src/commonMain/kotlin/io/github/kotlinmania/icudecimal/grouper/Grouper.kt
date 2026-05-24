@@ -1,4 +1,4 @@
-// port-lint: source src/grouper.rs
+// port-lint: source grouper.rs
 package io.github.kotlinmania.icudecimal.grouper
 
 import io.github.kotlinmania.icudecimal.options.GroupingStrategy
