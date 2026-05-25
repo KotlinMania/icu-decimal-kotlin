@@ -1,4 +1,3 @@
-// port-lint: ignore
 // Writeable part annotation value used by decimal part constants.
 package io.github.kotlinmania.writeable
 

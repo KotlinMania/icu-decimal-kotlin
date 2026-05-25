@@ -1,7 +1,11 @@
 // port-lint: source grouper.rs
 package io.github.kotlinmania.icudecimal.grouper
 
+import io.github.kotlinmania.icudecimal.DecimalFormatter
+import io.github.kotlinmania.icudecimal.input.Decimal
 import io.github.kotlinmania.icudecimal.options.GroupingStrategy
+import io.github.kotlinmania.icudecimal.options.DecimalFormatterOptions
+import io.github.kotlinmania.icudecimal.provider.DecimalSymbols
 import io.github.kotlinmania.icudecimal.provider.GroupingSizes
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -109,6 +113,27 @@ class GrouperTest {
                 assertEquals(case.expected[index], actual, case.toString())
             }
         }
+    }
+
+    @Test
+    fun formatterUsesCallerProvidedGroupingData() {
+        val symbols = DecimalSymbols.newEnForTesting().copy(
+            groupingSizes = GroupingSizes(
+                minGrouping = 1u,
+                primary = 3u,
+                secondary = 2u,
+            ),
+        )
+        val formatter = DecimalFormatter.tryNewUnstable(
+            symbols = symbols,
+            digits = "0123456789",
+            options = DecimalFormatterOptions.from(GroupingStrategy.Auto),
+        )
+        val decimal = Decimal.from(1)
+
+        decimal.multiplyPow10(5)
+
+        assertEquals("1,00,000", formatter.format(decimal).toString())
     }
 
     private fun renderOneFollowedByZeros(
