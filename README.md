@@ -125,15 +125,15 @@ The contents of this repository are governed by the Unicode [Terms of Use](https
 
 ```kotlin
 dependencies {
-    implementation("io.github.kotlinmania:icu-decimal-kotlin:0.1.1")
+    implementation("io.github.kotlinmania:icu-decimal-kotlin:0.1.2")
 }
 ```
 
 ### Building
 
 ```bash
-./gradlew build
-./gradlew test
+./gradlew --no-daemon build
+./gradlew --no-daemon test
 ```
 
 ### Targets

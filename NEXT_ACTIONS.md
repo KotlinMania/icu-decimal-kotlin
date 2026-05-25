@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 4/7 (57.1%)
-- **Function parity:** 10/14 matched (target 14) — 71.4%
-- **Class/type parity:** 7/9 matched (target 14) — 77.8%
-- **Combined symbol parity:** 17/23 matched (target 28) — 73.9%
-- **Average inline-code cosine:** 0.51 (function body across 4 matched files)
-- **Average documentation cosine:** 0.73 (doc text across 4 matched files)
-- **Cheat-zeroed Files:** 1
-- **Critical Issues:** 2 files with <0.60 function similarity
+- **Files Present:** 7/7 (100.0%)
+- **Function parity:** 15/20 matched (target 58) — 75.0%
+- **Class/type parity:** 9/10 matched (target 20) — 90.0%
+- **Combined symbol parity:** 24/30 matched (target 78) — 80.0%
+- **Average inline-code cosine:** 0.37 (function body across 7 matched files)
+- **Average documentation cosine:** 0.62 (doc text across 7 matched files)
+- **Cheat-zeroed Files:** 2
+- **Critical Issues:** 5 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -33,7 +33,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Similarity:** 0.41
 - **Dependents:** 1
 - **Priority Score:** 1020505.9
-- **Functions:** 2/3 matched
+- **Functions:** 2/3 matched (target 4)
 - **Missing functions:** `load`
 - **Types:** 1/2 matched
 - **Missing types:** `Provider`
@@ -61,7 +61,31 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 4. provider
+### 4. format
+
+- **Target:** `icudecimal.FormattedDecimal`
+- **Similarity:** 0.00
+- **Dependents:** 0
+- **Priority Score:** 30410.0
+- **Functions:** 0/3 matched (target 10)
+- **Missing functions:** `get_affixes`, `write_to_parts`, `test_es_mx`
+- **Types:** 1/1 matched (target 3)
+- **Missing types:** _none_
+- **Tests:** 0/1 matched
+
+### 5. lib
+
+- **Target:** `input.Decimal`
+- **Similarity:** 0.53
+- **Dependents:** 0
+- **Priority Score:** 10704.7
+- **Functions:** 5/6 matched (target 32)
+- **Missing functions:** `test_numbering_resolution_fallback`
+- **Types:** 1/1 matched (target 3)
+- **Missing types:** _none_
+- **Tests:** 0/1 matched
+
+### 6. provider
 
 - **Target:** `provider.Provider`
 - **Similarity:** 0.74
@@ -72,6 +96,17 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/4 matched (target 9)
 - **Missing types:** _none_
 
+### 7. size_test_macro
+
+- **Target:** `icudecimal.SizeTestMacro [ZERO]`
+- **Similarity:** 0.00
+- **Dependents:** 0
+- **Priority Score:** 10.0
+- **Functions:** 0/0 matched (target 1)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched
+- **Missing types:** _none_
+
 ## Success Criteria
 
 For each file to be considered "complete":
@@ -80,17 +115,4 @@ For each file to be considered "complete":
 - All tests ported
 - Documentation ported
 - port-lint header present
-
-## Reexport / Wiring Modules
-
-These files match `reexport_modules` patterns in `.ast_distance_config.json`. They are filtered out of
-normal priority and missing-file ladders because they are wiring
-modules, not direct logic ports. Consult them for call-site routing;
-do not treat them as the next implementation target by default.
-
-### Missing
-
-| Source | Expected target | Deps | Source path | Expected path |
-|--------|-----------------|------|-------------|---------------|
-| `lib` | `Lib` | 0 | `lib.rs` | `Lib.kt` |
 

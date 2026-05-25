@@ -2,6 +2,7 @@ import XCTest
 import IcuDecimal
 
 private typealias DecimalOptions = options
+private typealias DecimalInput = input
 private typealias DecimalParts = parts
 private typealias DecimalProvider = provider
 private typealias WriteablePart = ExportedKotlinPackages.io.github.kotlinmania.writeable.Part
@@ -86,5 +87,28 @@ final class IcuDecimalExportTests: XCTestCase {
         XCTAssertEqual(testingSymbols.groupingSizes.primary, 3)
         XCTAssertEqual(testingSymbols.groupingSizes.secondary, 3)
         XCTAssertEqual(testingSymbols.groupingSizes.minGrouping, 1)
+    }
+
+    func testDecimalFormatterExport() {
+        let formatter = DecimalFormatter.Companion.shared.tryNew(locale: "en-US")
+        let grouped = DecimalInput.Decimal.Companion.shared.from(value: Int64(1_234_567))
+        XCTAssertEqual(formatter.format(value: grouped).asString(), "1,234,567")
+
+        let fractional = DecimalInput.Decimal.Companion.shared.from(value: Int64(200_050))
+        fractional.multiplyPow10(power: Int32(-2))
+        XCTAssertEqual(formatter.format(value: fractional).asString(), "2,000.50")
+
+        let min2 = DecimalFormatter.Companion.shared.tryNewWithGroupingStrategy(
+            locale: "en-US",
+            groupingStrategy: DecimalOptions.GroupingStrategy.Min2
+        )
+        XCTAssertEqual(
+            min2.format(value: DecimalInput.Decimal.Companion.shared.from(value: Int64(1_000))).asString(),
+            "1000"
+        )
+        XCTAssertEqual(
+            min2.format(value: DecimalInput.Decimal.Companion.shared.from(value: Int64(10_000))).asString(),
+            "10,000"
+        )
     }
 }
