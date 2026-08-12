@@ -55,11 +55,12 @@ internal class DecimalPartsBuilder {
         }
         val start = text.length
         text.append(value)
-        segments += FormattedDecimalPart(
-            part = part,
-            start = start,
-            end = text.length,
-        )
+        segments +=
+            FormattedDecimalPart(
+                part = part,
+                start = start,
+                end = text.length,
+            )
     }
 
     fun build(): FormattedDecimal =

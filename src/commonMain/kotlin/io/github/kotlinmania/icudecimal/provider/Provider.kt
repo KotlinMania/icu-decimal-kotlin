@@ -58,14 +58,12 @@ data class GroupingSizes(
      * If 0, grouping separators will never be shown.
      */
     val primary: UByte,
-
     /**
      * The size of groups after the first group.
      *
      * If 0, defaults to be the same as [primary].
      */
     val secondary: UByte,
-
     /**
      * The minimum number of digits required before the first group. For example,
      * if [primary] is 3 and [minGrouping] is 2, grouping separators will be
@@ -89,32 +87,26 @@ data class DecimalSymbolStrsBuilder(
      * Prefix to apply when a negative sign is needed.
      */
     val minusSignPrefix: String,
-
     /**
      * Suffix to apply when a negative sign is needed.
      */
     val minusSignSuffix: String,
-
     /**
      * Prefix to apply when a positive sign is needed.
      */
     val plusSignPrefix: String,
-
     /**
      * Suffix to apply when a positive sign is needed.
      */
     val plusSignSuffix: String,
-
     /**
      * Character used to separate the integer and fraction parts of the number.
      */
     val decimalSeparator: String,
-
     /**
      * Character used to separate groups in the integer part of the number.
      */
     val groupingSeparator: String,
-
     /**
      * The numbering system to use.
      */
@@ -172,7 +164,6 @@ data class DecimalSymbols(
      * size. Kotlin keeps the same semantic fields in a value object.
      */
     val strings: DecimalSymbolStrs,
-
     /**
      * Settings used to determine where to place groups in the integer part of
      * the number.
@@ -217,22 +208,24 @@ data class DecimalSymbols(
          * Create a new en-US format for use in testing.
          */
         fun newEnForTesting(): DecimalSymbols {
-            val strings = DecimalSymbolStrsBuilder(
-                minusSignPrefix = "-",
-                minusSignSuffix = "",
-                plusSignPrefix = "+",
-                plusSignSuffix = "",
-                decimalSeparator = ".",
-                groupingSeparator = ",",
-                numsys = "latn",
-            )
+            val strings =
+                DecimalSymbolStrsBuilder(
+                    minusSignPrefix = "-",
+                    minusSignSuffix = "",
+                    plusSignPrefix = "+",
+                    plusSignSuffix = "",
+                    decimalSeparator = ".",
+                    groupingSeparator = ",",
+                    numsys = "latn",
+                )
             return DecimalSymbols(
                 strings = strings.build(),
-                groupingSizes = GroupingSizes(
-                    primary = 3u,
-                    secondary = 3u,
-                    minGrouping = 1u,
-                ),
+                groupingSizes =
+                    GroupingSizes(
+                        primary = 3u,
+                        secondary = 3u,
+                        minGrouping = 1u,
+                    ),
             )
         }
     }

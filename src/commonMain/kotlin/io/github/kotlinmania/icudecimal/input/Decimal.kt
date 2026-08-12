@@ -71,16 +71,18 @@ class Decimal private constructor(
             }
 
             val separatorIndex = unsigned.indexOf('.')
-            val integerPart = if (separatorIndex >= 0) {
-                unsigned.substring(0, separatorIndex)
-            } else {
-                unsigned
-            }
-            val fractionPart = if (separatorIndex >= 0) {
-                unsigned.substring(separatorIndex + 1)
-            } else {
-                ""
-            }
+            val integerPart =
+                if (separatorIndex >= 0) {
+                    unsigned.substring(0, separatorIndex)
+                } else {
+                    unsigned
+                }
+            val fractionPart =
+                if (separatorIndex >= 0) {
+                    unsigned.substring(separatorIndex + 1)
+                } else {
+                    ""
+                }
             val digits = (integerPart + fractionPart).trimStart('0').ifEmpty { "0" }
             require(digits.all { it in '0'..'9' }) {
                 "Decimal string must contain only ASCII digits"

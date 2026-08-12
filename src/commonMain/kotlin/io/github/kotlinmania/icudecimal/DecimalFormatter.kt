@@ -155,33 +155,38 @@ class DecimalFormatter private constructor(
             val language = normalized.substringBefore('-')
             val numberingSystem = numberingSystemFromLocale(normalized)
             return when {
-                language == "bn" -> decimalSymbols(
-                    decimalSeparator = ".",
-                    groupingSeparator = ",",
-                    numsys = resolvedNumberingSystem(numberingSystem, default = "beng"),
-                    groupingSizes = GroupingSizes(primary = 3u, secondary = 2u, minGrouping = 1u),
-                )
-                normalized.startsWith("ar-eg-u-nu-latn") -> decimalSymbols(
-                    decimalSeparator = ".",
-                    groupingSeparator = ",",
-                    numsys = "latn",
-                    groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
-                )
-                language == "ar" -> decimalSymbols(
-                    decimalSeparator = "٫",
-                    groupingSeparator = "٬",
-                    numsys = "arab",
-                    groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
-                )
-                else -> decimalSymbols(
-                    decimalSeparator = ".",
-                    groupingSeparator = ",",
-                    numsys = resolvedNumberingSystem(
-                        requested = numberingSystem,
-                        default = if (language == "th") "thai" else "latn",
-                    ),
-                    groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
-                )
+                language == "bn" ->
+                    decimalSymbols(
+                        decimalSeparator = ".",
+                        groupingSeparator = ",",
+                        numsys = resolvedNumberingSystem(numberingSystem, default = "beng"),
+                        groupingSizes = GroupingSizes(primary = 3u, secondary = 2u, minGrouping = 1u),
+                    )
+                normalized.startsWith("ar-eg-u-nu-latn") ->
+                    decimalSymbols(
+                        decimalSeparator = ".",
+                        groupingSeparator = ",",
+                        numsys = "latn",
+                        groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
+                    )
+                language == "ar" ->
+                    decimalSymbols(
+                        decimalSeparator = "٫",
+                        groupingSeparator = "٬",
+                        numsys = "arab",
+                        groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
+                    )
+                else ->
+                    decimalSymbols(
+                        decimalSeparator = ".",
+                        groupingSeparator = ",",
+                        numsys =
+                            resolvedNumberingSystem(
+                                requested = numberingSystem,
+                                default = if (language == "th") "thai" else "latn",
+                            ),
+                        groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
+                    )
             }
         }
 
@@ -192,15 +197,16 @@ class DecimalFormatter private constructor(
             groupingSizes: GroupingSizes,
         ): DecimalSymbols =
             DecimalSymbols(
-                strings = DecimalSymbolStrsBuilder(
-                    minusSignPrefix = "-",
-                    minusSignSuffix = "",
-                    plusSignPrefix = "+",
-                    plusSignSuffix = "",
-                    decimalSeparator = decimalSeparator,
-                    groupingSeparator = groupingSeparator,
-                    numsys = numsys,
-                ).build(),
+                strings =
+                    DecimalSymbolStrsBuilder(
+                        minusSignPrefix = "-",
+                        minusSignSuffix = "",
+                        plusSignPrefix = "+",
+                        plusSignSuffix = "",
+                        decimalSeparator = decimalSeparator,
+                        groupingSeparator = groupingSeparator,
+                        numsys = numsys,
+                    ).build(),
                 groupingSizes = groupingSizes,
             )
 
@@ -228,7 +234,8 @@ class DecimalFormatter private constructor(
             if (index < 0) {
                 return null
             }
-            return locale.substring(index + marker.length)
+            return locale
+                .substring(index + marker.length)
                 .substringBefore('-')
                 .ifBlank { null }
                 ?.lowercase()
