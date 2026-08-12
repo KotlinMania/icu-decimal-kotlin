@@ -15,9 +15,10 @@ data class Part(
         /**
          * A part that annotates error segments in writeable output.
          */
-        val ERROR: Part = Part(
-            category = "writeable",
-            value = "error",
-        )
+        val ERROR: Part =
+            Part(
+                category = "writeable",
+                value = "error",
+            )
     }
 }

@@ -29,47 +29,53 @@ import io.github.kotlinmania.writeable.Part
 /**
  * A [Part] used by formatted decimal output for positive signs.
  */
-val PLUS_SIGN: Part = Part(
-    category = "decimal",
-    value = "plusSign",
-)
+val PLUS_SIGN: Part =
+    Part(
+        category = "decimal",
+        value = "plusSign",
+    )
 
 /**
  * A [Part] used by formatted decimal output for negative signs.
  */
-val MINUS_SIGN: Part = Part(
-    category = "decimal",
-    value = "minusSign",
-)
+val MINUS_SIGN: Part =
+    Part(
+        category = "decimal",
+        value = "minusSign",
+    )
 
 /**
  * A [Part] used by formatted decimal output for integer digits.
  */
-val INTEGER: Part = Part(
-    category = "decimal",
-    value = "integer",
-)
+val INTEGER: Part =
+    Part(
+        category = "decimal",
+        value = "integer",
+    )
 
 /**
  * A [Part] used by formatted decimal output for fraction digits.
  */
-val FRACTION: Part = Part(
-    category = "decimal",
-    value = "fraction",
-)
+val FRACTION: Part =
+    Part(
+        category = "decimal",
+        value = "fraction",
+    )
 
 /**
  * A [Part] used by formatted decimal output for grouping separators.
  */
-val GROUP: Part = Part(
-    category = "decimal",
-    value = "group",
-)
+val GROUP: Part =
+    Part(
+        category = "decimal",
+        value = "group",
+    )
 
 /**
  * A [Part] used by formatted decimal output for decimal separators.
  */
-val DECIMAL: Part = Part(
-    category = "decimal",
-    value = "decimal",
-)
+val DECIMAL: Part =
+    Part(
+        category = "decimal",
+        value = "decimal",
+    )

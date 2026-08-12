@@ -47,13 +47,15 @@ class DecimalFormatterTest {
     fun formatsDocumentedNumberingSystems() {
         assertEquals(
             "\u09E7\u09E6,\u09E6\u09E6,\u09E6\u09E6\u09ED",
-            DecimalFormatter.tryNew("bn", DecimalFormatterOptions())
+            DecimalFormatter
+                .tryNew("bn", DecimalFormatterOptions())
                 .format(Decimal.from(1_000_007))
                 .toString(),
         )
         assertEquals(
             "\u0E51,\u0E50\u0E50\u0E50,\u0E50\u0E50\u0E57",
-            DecimalFormatter.tryNew("th-u-nu-thai", DecimalFormatterOptions())
+            DecimalFormatter
+                .tryNew("th-u-nu-thai", DecimalFormatterOptions())
                 .format(Decimal.from(1_000_007))
                 .toString(),
         )
@@ -77,10 +79,11 @@ class DecimalFormatterTest {
 
     @Test
     fun honorsGroupingStrategy() {
-        val formatter = DecimalFormatter.tryNew(
-            locale = "en-US",
-            options = DecimalFormatterOptions.from(GroupingStrategy.Min2),
-        )
+        val formatter =
+            DecimalFormatter.tryNew(
+                locale = "en-US",
+                options = DecimalFormatterOptions.from(GroupingStrategy.Min2),
+            )
 
         assertEquals("1000", formatter.format(Decimal.from(1_000)).toString())
         assertEquals("10,000", formatter.format(Decimal.from(10_000)).toString())
@@ -139,18 +142,20 @@ class DecimalFormatterTest {
         }
 
         fun formatScaled(n: Long, scale: Long, fractionDigits: Int): String {
-            val scaled = round((n.toDouble() / scale.toDouble()) * 10.0.pow(fractionDigits))
-                .toLong()
+            val scaled =
+                round((n.toDouble() / scale.toDouble()) * 10.0.pow(fractionDigits))
+                    .toLong()
             val decimal = Decimal.from(scaled)
             decimal.multiplyPow10(-fractionDigits)
             return formatter.format(decimal).toString()
         }
 
-        val units = listOf(
-            1_000L to "K",
-            1_000_000L to "M",
-            1_000_000_000L to "G",
-        )
+        val units =
+            listOf(
+                1_000L to "K",
+                1_000_000L to "M",
+                1_000_000_000L to "G",
+            )
         val floating = value.toDouble()
         for ((scale, suffix) in units) {
             if (round(100.0 * floating / scale.toDouble()) < 1000.0) {

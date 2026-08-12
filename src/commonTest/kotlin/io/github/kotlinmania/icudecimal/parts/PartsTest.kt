@@ -8,14 +8,15 @@ import kotlin.test.assertEquals
 class PartsTest {
     @Test
     fun decimalPartsExposeStableValues() {
-        val cases = listOf(
-            PLUS_SIGN to "plusSign",
-            MINUS_SIGN to "minusSign",
-            INTEGER to "integer",
-            FRACTION to "fraction",
-            GROUP to "group",
-            DECIMAL to "decimal",
-        )
+        val cases =
+            listOf(
+                PLUS_SIGN to "plusSign",
+                MINUS_SIGN to "minusSign",
+                INTEGER to "integer",
+                FRACTION to "fraction",
+                GROUP to "group",
+                DECIMAL to "decimal",
+            )
 
         for ((part, value) in cases) {
             assertEquals("decimal", part.category)
