@@ -171,4 +171,24 @@ class DecimalFormatterTest {
 
         return formatter.format(Decimal.from(round(floating / 1e9).toLong())).toString() + "G"
     }
+
+    @Test
+    fun testDecimalFormatterPreferences() {
+        val prefs = DecimalFormatterPreferences(locale = "th", numberingSystem = "thai")
+        val formatter = DecimalFormatter.tryNew(prefs)
+        val decimal = Decimal.from(1_000_007)
+        assertEquals("\u0E51,\u0E50\u0E50\u0E50,\u0E50\u0E50\u0E57", formatter.format(decimal).toString())
+    }
+
+    @Test
+    fun testBenchOverviewLoop() {
+        val prefs = DecimalFormatterPreferences.from("en-US")
+        val formatter = DecimalFormatter.tryNew(prefs, DecimalFormatterOptions())
+        val testNums = longArrayOf(0L, 1L, -1L, 1000L, 1_234_567L, -9_876_543L)
+        for (num in testNums) {
+            val decimal = Decimal.from(num)
+            val str = formatter.formatToString(decimal)
+            assertEquals(formatter.format(decimal).toString(), str)
+        }
+    }
 }
