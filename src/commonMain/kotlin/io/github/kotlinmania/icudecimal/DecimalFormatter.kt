@@ -3,6 +3,29 @@
 
 package io.github.kotlinmania.icudecimal
 
+/*
+ * Copyright (c) 2020-2024 Unicode, Inc.
+ * Copyright (c) 2025 Sydney Renee, The Solace Project
+ *
+ * Unicode License V3
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of data files and any associated documentation (the "Data Files") or
+ * software and any associated documentation (the "Software") to deal in the
+ * Data Files or Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, and/or sell
+ * copies of the Data Files or Software, and to permit persons to whom the
+ * Data Files or Software are furnished to do so, provided that either (a)
+ * this copyright and permission notice appear with all copies of the Data
+ * Files or Software, or (b) this copyright and permission notice appear in
+ * associated Documentation.
+ *
+ * THE DATA FILES AND SOFTWARE ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+ * KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF
+ * THIRD PARTY RIGHTS.
+ */
+
 import io.github.kotlinmania.icudecimal.grouper.check
 import io.github.kotlinmania.icudecimal.input.Decimal
 import io.github.kotlinmania.icudecimal.options.DecimalFormatterOptions
@@ -11,6 +34,21 @@ import io.github.kotlinmania.icudecimal.provider.DecimalSymbolStrsBuilder
 import io.github.kotlinmania.icudecimal.provider.DecimalSymbols
 import io.github.kotlinmania.icudecimal.provider.GroupingSizes
 import kotlin.native.HiddenFromObjC
+
+/**
+ * Preferences for decimal formatting.
+ */
+@HiddenFromObjC
+data class DecimalFormatterPreferences(
+    /** The preferred locale identifier. */
+    val locale: String = "en-US",
+    /** The user's preferred numbering system (e.g. "latn", "arab", "beng", "thai"). */
+    val numberingSystem: String? = null,
+) {
+    companion object {
+        fun from(locale: String): DecimalFormatterPreferences = DecimalFormatterPreferences(locale = locale)
+    }
+}
 
 /**
  * A formatter for [Decimal], rendering decimal digits with locale-style
@@ -102,6 +140,23 @@ class DecimalFormatter private constructor(
             locale: String,
             options: DecimalFormatterOptions,
         ): DecimalFormatter = create(locale, options)
+
+        /**
+         * Creates a new [DecimalFormatter] from preferences and options.
+         */
+        @HiddenFromObjC
+        fun tryNew(
+            prefs: DecimalFormatterPreferences,
+            options: DecimalFormatterOptions = DecimalFormatterOptions(),
+        ): DecimalFormatter {
+            val loc =
+                if (prefs.numberingSystem != null && !prefs.locale.contains("-u-nu-")) {
+                    "${prefs.locale}-u-nu-${prefs.numberingSystem}"
+                } else {
+                    prefs.locale
+                }
+            return create(loc, options)
+        }
 
         /**
          * Creates a new [DecimalFormatter] using a Swift-friendly grouping
