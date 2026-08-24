@@ -1,4 +1,4 @@
-import XCTest
+import Testing
 import IcuDecimal
 
 private typealias DecimalOptions = options
@@ -7,8 +7,10 @@ private typealias DecimalParts = parts
 private typealias DecimalProvider = provider
 private typealias WriteablePart = ExportedKotlinPackages.io.github.kotlinmania.writeable.Part
 
-final class IcuDecimalExportTests: XCTestCase {
-    func testDecimalPartsExposeStableValues() {
+@Suite("IcuDecimal Swift Export Tests")
+struct IcuDecimalExportTests {
+    @Test("Decimal parts expose stable values")
+    func decimalPartsExposeStableValues() {
         let cases: [(WriteablePart, String)] = [
             (DecimalParts.PLUS_SIGN, "plusSign"),
             (DecimalParts.MINUS_SIGN, "minusSign"),
@@ -19,36 +21,39 @@ final class IcuDecimalExportTests: XCTestCase {
         ]
 
         for (part, value) in cases {
-            XCTAssertEqual(part.category, "decimal")
-            XCTAssertEqual(part.value, value)
+            #expect(part.category == "decimal")
+            #expect(part.value == value)
         }
     }
 
-    func testPartUsesValueEquality() {
+    @Test("Part uses value equality")
+    func partUsesValueEquality() {
         let expected = WriteablePart(category: "decimal", value: "integer")
-        XCTAssertTrue(DecimalParts.INTEGER.equals(other: expected))
+        #expect(DecimalParts.INTEGER.equals(other: expected))
     }
 
-    func testGroupingStrategyExport() {
-        XCTAssertEqual(
-            DecimalOptions.GroupingStrategy.allCases.map(\.description),
+    @Test("Grouping strategy export")
+    func groupingStrategyExport() {
+        #expect(
+            DecimalOptions.GroupingStrategy.allCases.map(\.description) ==
             ["Auto", "Never", "Always", "Min2"]
         )
-        XCTAssertEqual(DecimalOptions.GroupingStrategy.Min2.rawValue, 3)
-        XCTAssertEqual(DecimalOptions.GroupingStrategy("Min2"), .Min2)
-        XCTAssertNil(DecimalOptions.GroupingStrategy("Bogus"))
+        #expect(DecimalOptions.GroupingStrategy.Min2.rawValue == 3)
+        #expect(DecimalOptions.GroupingStrategy("Min2") == .Min2)
+        #expect(DecimalOptions.GroupingStrategy("Bogus") == nil)
     }
 
-    func testProviderValueObjectsExport() {
-        XCTAssertEqual(DecimalProvider.DecimalSymbolsV1.shared.KEY, "decimal/symbols/v1")
-        XCTAssertEqual(DecimalProvider.DecimalDigitsV1.shared.KEY, "decimal/digits/v1")
-        XCTAssertEqual(DecimalProvider.DecimalDigitsV1.shared.ATTRIBUTES_DOMAIN, "numbering_system")
-        XCTAssertEqual(DecimalProvider.MARKERS, ["decimal/symbols/v1", "decimal/digits/v1"])
+    @Test("Provider value objects export")
+    func providerValueObjectsExport() {
+        #expect(DecimalProvider.DecimalSymbolsV1.shared.KEY == "decimal/symbols/v1")
+        #expect(DecimalProvider.DecimalDigitsV1.shared.KEY == "decimal/digits/v1")
+        #expect(DecimalProvider.DecimalDigitsV1.shared.ATTRIBUTES_DOMAIN == "numbering_system")
+        #expect(DecimalProvider.MARKERS == ["decimal/symbols/v1", "decimal/digits/v1"])
 
         let groupingSizes = DecimalProvider.GroupingSizes(primary: 3, secondary: 2, minGrouping: 1)
-        XCTAssertEqual(groupingSizes.primary, 3)
-        XCTAssertEqual(groupingSizes.secondary, 2)
-        XCTAssertEqual(groupingSizes.minGrouping, 1)
+        #expect(groupingSizes.primary == 3)
+        #expect(groupingSizes.secondary == 2)
+        #expect(groupingSizes.minGrouping == 1)
 
         let builder = DecimalProvider.DecimalSymbolStrsBuilder(
             minusSignPrefix: "-",
@@ -60,54 +65,55 @@ final class IcuDecimalExportTests: XCTestCase {
             numsys: "latn"
         )
         let strings = builder.build()
-        XCTAssertEqual(strings.minusSignPrefix, "-")
-        XCTAssertEqual(strings.minusSignSuffix, "")
-        XCTAssertEqual(strings.plusSignPrefix, "+")
-        XCTAssertEqual(strings.plusSignSuffix, "")
-        XCTAssertEqual(strings.decimalSeparator, ".")
-        XCTAssertEqual(strings.groupingSeparator, ",")
-        XCTAssertEqual(strings.numsys, "latn")
+        #expect(strings.minusSignPrefix == "-")
+        #expect(strings.minusSignSuffix == "")
+        #expect(strings.plusSignPrefix == "+")
+        #expect(strings.plusSignSuffix == "")
+        #expect(strings.decimalSeparator == ".")
+        #expect(strings.groupingSeparator == ",")
+        #expect(strings.numsys == "latn")
 
         let symbols = DecimalProvider.DecimalSymbols(strings: strings, groupingSizes: groupingSizes)
-        XCTAssertEqual(symbols.decimalSeparator(), ".")
-        XCTAssertEqual(symbols.groupingSeparator(), ",")
-        XCTAssertEqual(symbols.numsys(), "latn")
-        XCTAssertEqual(symbols.minusSignAffixes().prefix, "-")
-        XCTAssertEqual(symbols.minusSignAffixes().suffix, "")
-        XCTAssertEqual(symbols.plusSignAffixes().prefix, "+")
-        XCTAssertEqual(symbols.plusSignAffixes().suffix, "")
-        XCTAssertEqual(symbols.groupingSizes.primary, 3)
-        XCTAssertEqual(symbols.groupingSizes.secondary, 2)
-        XCTAssertEqual(symbols.groupingSizes.minGrouping, 1)
+        #expect(symbols.decimalSeparator() == ".")
+        #expect(symbols.groupingSeparator() == ",")
+        #expect(symbols.numsys() == "latn")
+        #expect(symbols.minusSignAffixes().prefix == "-")
+        #expect(symbols.minusSignAffixes().suffix == "")
+        #expect(symbols.plusSignAffixes().prefix == "+")
+        #expect(symbols.plusSignAffixes().suffix == "")
+        #expect(symbols.groupingSizes.primary == 3)
+        #expect(symbols.groupingSizes.secondary == 2)
+        #expect(symbols.groupingSizes.minGrouping == 1)
 
         let testingSymbols = DecimalProvider.DecimalSymbols.Companion.shared.newEnForTesting()
-        XCTAssertEqual(testingSymbols.decimalSeparator(), ".")
-        XCTAssertEqual(testingSymbols.groupingSeparator(), ",")
-        XCTAssertEqual(testingSymbols.numsys(), "latn")
-        XCTAssertEqual(testingSymbols.groupingSizes.primary, 3)
-        XCTAssertEqual(testingSymbols.groupingSizes.secondary, 3)
-        XCTAssertEqual(testingSymbols.groupingSizes.minGrouping, 1)
+        #expect(testingSymbols.decimalSeparator() == ".")
+        #expect(testingSymbols.groupingSeparator() == ",")
+        #expect(testingSymbols.numsys() == "latn")
+        #expect(testingSymbols.groupingSizes.primary == 3)
+        #expect(testingSymbols.groupingSizes.secondary == 3)
+        #expect(testingSymbols.groupingSizes.minGrouping == 1)
     }
 
-    func testDecimalFormatterExport() {
+    @Test("Decimal formatter export")
+    func decimalFormatterExport() {
         let formatter = DecimalFormatter.Companion.shared.tryNew(locale: "en-US")
         let grouped = DecimalInput.Decimal.Companion.shared.from(value: Int64(1_234_567))
-        XCTAssertEqual(formatter.format(value: grouped).asString(), "1,234,567")
+        #expect(formatter.format(value: grouped).asString() == "1,234,567")
 
         let fractional = DecimalInput.Decimal.Companion.shared.from(value: Int64(200_050))
         fractional.multiplyPow10(power: Int32(-2))
-        XCTAssertEqual(formatter.format(value: fractional).asString(), "2,000.50")
+        #expect(formatter.format(value: fractional).asString() == "2,000.50")
 
         let min2 = DecimalFormatter.Companion.shared.tryNewWithGroupingStrategy(
             locale: "en-US",
             groupingStrategy: DecimalOptions.GroupingStrategy.Min2
         )
-        XCTAssertEqual(
-            min2.format(value: DecimalInput.Decimal.Companion.shared.from(value: Int64(1_000))).asString(),
+        #expect(
+            min2.format(value: DecimalInput.Decimal.Companion.shared.from(value: Int64(1_000))).asString() ==
             "1000"
         )
-        XCTAssertEqual(
-            min2.format(value: DecimalInput.Decimal.Companion.shared.from(value: Int64(10_000))).asString(),
+        #expect(
+            min2.format(value: DecimalInput.Decimal.Companion.shared.from(value: Int64(10_000))).asString() ==
             "10,000"
         )
     }
