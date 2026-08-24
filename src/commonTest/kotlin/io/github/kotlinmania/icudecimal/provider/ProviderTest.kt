@@ -1,4 +1,4 @@
-// port-lint: source provider.rs
+// port-lint: tests provider.rs
 package io.github.kotlinmania.icudecimal.provider
 
 import kotlin.test.Test
