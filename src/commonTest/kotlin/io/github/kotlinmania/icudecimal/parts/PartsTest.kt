@@ -1,4 +1,4 @@
-// port-lint: source parts.rs
+// port-lint: tests parts.rs
 package io.github.kotlinmania.icudecimal.parts
 
 import io.github.kotlinmania.writeable.Part

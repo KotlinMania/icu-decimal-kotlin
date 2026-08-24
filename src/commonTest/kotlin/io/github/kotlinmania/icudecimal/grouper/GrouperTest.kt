@@ -1,4 +1,4 @@
-// port-lint: source grouper.rs
+// port-lint: tests grouper.rs
 package io.github.kotlinmania.icudecimal.grouper
 
 import io.github.kotlinmania.icudecimal.DecimalFormatter
