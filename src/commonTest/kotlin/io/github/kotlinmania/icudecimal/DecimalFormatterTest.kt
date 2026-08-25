@@ -78,6 +78,11 @@ class DecimalFormatterTest {
     }
 
     @Test
+    fun testNumberingResolutionFallback() {
+        formatsNumberingResolutionFallbackCases()
+    }
+
+    @Test
     fun honorsGroupingStrategy() {
         val formatter =
             DecimalFormatter.tryNew(
