@@ -1,4 +1,4 @@
-// port-lint: source icu_decimal/src/provider.rs
+// port-lint: source provider.rs
 package io.github.kotlinmania.icudecimal.provider
 
 /**
