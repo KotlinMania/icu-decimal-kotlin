@@ -41,7 +41,7 @@ class FormattedDecimal internal constructor(
     /**
      * Writes formatted decimal with parts representation.
      */
-    internal fun writeToParts(): Unit {}
+    internal fun writeToParts() {}
 
     override fun toString(): String = text
 }
