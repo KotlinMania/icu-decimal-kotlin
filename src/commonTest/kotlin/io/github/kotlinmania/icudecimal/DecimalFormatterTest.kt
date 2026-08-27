@@ -1,4 +1,4 @@
-// port-lint: tests lib.rs
+// port-lint: tests icu_decimal/src/lib.rs
 package io.github.kotlinmania.icudecimal
 
 import io.github.kotlinmania.icudecimal.input.Decimal

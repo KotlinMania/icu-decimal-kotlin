@@ -4,13 +4,13 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 7/7 (100.0%)
-- **Function parity:** 17/20 matched (target 65) — 85.0%
+- **Files Present:** 7/8 (87.5%)
+- **Function parity:** 17/22 matched (target 65) — 77.3%
 - **Class/type parity:** 9/10 matched (target 23) — 90.0%
-- **Combined symbol parity:** 26/30 matched (target 88) — 86.7%
-- **Average inline-code cosine:** 0.40 (function body across 7 matched files)
-- **Average documentation cosine:** 0.62 (doc text across 7 matched files)
-- **Cheat-zeroed Files:** 2
+- **Combined symbol parity:** 26/32 matched (target 88) — 81.2%
+- **Average inline-code cosine:** 0.37 (function body across 6 matched files)
+- **Average documentation cosine:** 0.64 (doc text across 6 matched files)
+- **Cheat-zeroed Files:** 3
 - **Critical Issues:** 5 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
@@ -27,7 +27,7 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. grouper
+### 1. icu_decimal.grouper
 
 - **Target:** `grouper.Grouper`
 - **Similarity:** 0.41
@@ -39,7 +39,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `Provider`
 - **Tests:** 1/1 matched
 
-### 2. options
+### 2. icu_decimal.options
 
 - **Target:** `options.Options`
 - **Similarity:** 0.90
@@ -50,7 +50,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
 
-### 3. parts
+### 3. icu_decimal.parts
 
 - **Target:** `parts.Parts [ZERO]`
 - **Similarity:** 0.00
@@ -61,7 +61,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 4. format
+### 4. icu_decimal.format
 
 - **Target:** `icudecimal.FormattedDecimal`
 - **Similarity:** 0.17
@@ -73,7 +73,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
 
-### 5. provider
+### 5. icu_decimal.provider
 
 - **Target:** `provider.Provider`
 - **Similarity:** 0.74
@@ -84,19 +84,19 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/4 matched (target 9)
 - **Missing types:** _none_
 
-### 6. lib
+### 6. icu_decimal.lib
 
-- **Target:** `input.Decimal`
-- **Similarity:** 0.56
+- **Target:** `input.Decimal [STUB]`
+- **Similarity:** 0.00
 - **Dependents:** 0
-- **Priority Score:** 704.4
+- **Priority Score:** 710.0
 - **Functions:** 6/6 matched (target 37)
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
 
-### 7. size_test_macro
+### 7. icu_decimal.size_test_macro
 
 - **Target:** `icudecimal.SizeTestMacro [ZERO]`
 - **Similarity:** 0.00
