@@ -5,9 +5,9 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 7/7 (100.0%)
-- **Function parity:** 17/20 matched (target 65) — 85.0%
+- **Function parity:** 19/20 matched (target 67) — 95.0%
 - **Class/type parity:** 9/10 matched (target 23) — 90.0%
-- **Combined symbol parity:** 26/30 matched (target 88) — 86.7%
+- **Combined symbol parity:** 28/30 matched (target 90) — 93.3%
 - **Average inline-code cosine:** 0.40 (function body across 7 matched files)
 - **Average documentation cosine:** 0.62 (doc text across 7 matched files)
 - **Cheat-zeroed Files:** 2
@@ -61,19 +61,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 4. format
-
-- **Target:** `icudecimal.FormattedDecimal`
-- **Similarity:** 0.17
-- **Dependents:** 0
-- **Priority Score:** 20408.3
-- **Functions:** 1/3 matched (target 11)
-- **Missing functions:** `get_affixes`, `write_to_parts`
-- **Types:** 1/1 matched (target 4)
-- **Missing types:** _none_
-- **Tests:** 1/1 matched
-
-### 5. provider
+### 4. provider
 
 - **Target:** `provider.Provider`
 - **Similarity:** 0.74
@@ -84,13 +72,25 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/4 matched (target 9)
 - **Missing types:** _none_
 
-### 6. lib
+### 5. lib
 
 - **Target:** `input.Decimal`
 - **Similarity:** 0.56
 - **Dependents:** 0
 - **Priority Score:** 704.4
 - **Functions:** 6/6 matched (target 37)
+- **Missing functions:** _none_
+- **Types:** 1/1 matched (target 4)
+- **Missing types:** _none_
+- **Tests:** 1/1 matched
+
+### 6. format
+
+- **Target:** `icudecimal.FormattedDecimal`
+- **Similarity:** 0.22
+- **Dependents:** 0
+- **Priority Score:** 407.8
+- **Functions:** 3/3 matched (target 13)
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
