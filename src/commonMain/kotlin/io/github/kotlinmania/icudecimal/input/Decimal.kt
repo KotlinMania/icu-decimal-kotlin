@@ -1,4 +1,4 @@
-// port-lint: source lib.rs
+// port-lint: source icu_decimal/src/lib.rs
 package io.github.kotlinmania.icudecimal.input
 
 /**
