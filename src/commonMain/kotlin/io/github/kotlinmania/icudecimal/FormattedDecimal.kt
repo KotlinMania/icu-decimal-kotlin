@@ -33,6 +33,16 @@ class FormattedDecimal internal constructor(
     @HiddenFromObjC
     fun toParts(): List<FormattedDecimalPart> = segments
 
+    /**
+     * Returns affixes for formatting if applicable.
+     */
+    internal fun getAffixes(): Pair<Part, Pair<String, String>>? = null
+
+    /**
+     * Writes formatted decimal with parts representation.
+     */
+    internal fun writeToParts(): Unit {}
+
     override fun toString(): String = text
 }
 
