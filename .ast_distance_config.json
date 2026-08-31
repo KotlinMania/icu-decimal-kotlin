@@ -2,7 +2,7 @@
   "type": "port",
   "name": "icu-decimal-kotlin",
   "source": {
-    "path": "tmp/icu_decimal/src",
+    "path": "tmp",
     "lang": "rust"
   },
   "target": {
