@@ -1,4 +1,4 @@
-// port-lint: source options.rs
+// port-lint: source icu_decimal/src/options.rs
 @file:OptIn(kotlin.experimental.ExperimentalObjCRefinement::class)
 
 package io.github.kotlinmania.icudecimal.options
