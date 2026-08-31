@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 7/8 (87.5%)
-- **Function parity:** 19/22 matched (target 58) — 86.4%
-- **Class/type parity:** 9/10 matched (target 21) — 90.0%
-- **Combined symbol parity:** 28/32 matched (target 79) — 87.5%
-- **Average inline-code cosine:** 0.38 (function body across 6 matched files)
-- **Average documentation cosine:** 0.64 (doc text across 6 matched files)
+- **Files Present:** 8/8 (100.0%)
+- **Function parity:** 21/22 matched (target 62) — 95.5%
+- **Class/type parity:** 9/10 matched (target 22) — 90.0%
+- **Combined symbol parity:** 30/32 matched (target 84) — 93.8%
+- **Average inline-code cosine:** 0.40 (function body across 7 matched files)
+- **Average documentation cosine:** 0.55 (doc text across 7 matched files)
 - **Cheat-zeroed Files:** 1
-- **Critical Issues:** 5 files with <0.60 function similarity
+- **Critical Issues:** 6 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -84,6 +84,17 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
+
+### 6. benches.fixed_decimal_format
+
+- **Target:** `icudecimal.FixedDecimalFormatBenchTest`
+- **Similarity:** 0.54
+- **Dependents:** 0
+- **Priority Score:** 204.6
+- **Functions:** 2/2 matched (target 4)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
 
 ## Success Criteria
 
