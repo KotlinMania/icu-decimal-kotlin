@@ -4,13 +4,13 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 7/7 (100.0%)
-- **Function parity:** 19/20 matched (target 64) — 95.0%
+- **Files Present:** 7/8 (87.5%)
+- **Function parity:** 19/22 matched (target 64) — 86.4%
 - **Class/type parity:** 9/10 matched (target 22) — 90.0%
-- **Combined symbol parity:** 28/30 matched (target 86) — 93.3%
-- **Average inline-code cosine:** 0.40 (function body across 7 matched files)
-- **Average documentation cosine:** 0.62 (doc text across 7 matched files)
-- **Cheat-zeroed Files:** 0
+- **Combined symbol parity:** 28/32 matched (target 86) — 87.5%
+- **Average inline-code cosine:** 0.38 (function body across 6 matched files)
+- **Average documentation cosine:** 0.64 (doc text across 6 matched files)
+- **Cheat-zeroed Files:** 1
 - **Critical Issues:** 5 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
@@ -27,7 +27,7 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. grouper
+### 1. icu_decimal.grouper
 
 - **Target:** `grouper.Grouper`
 - **Similarity:** 0.41
@@ -39,7 +39,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `Provider`
 - **Tests:** 1/1 matched
 
-### 2. options
+### 2. icu_decimal.options
 
 - **Target:** `options.Options`
 - **Similarity:** 0.90
@@ -50,7 +50,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
 
-### 3. provider
+### 3. icu_decimal.provider
 
 - **Target:** `provider.Provider`
 - **Similarity:** 0.74
@@ -61,19 +61,19 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/4 matched (target 9)
 - **Missing types:** _none_
 
-### 4. lib
+### 4. icu_decimal.lib
 
-- **Target:** `input.Decimal`
-- **Similarity:** 0.56
+- **Target:** `input.Decimal [STUB]`
+- **Similarity:** 0.00
 - **Dependents:** 0
-- **Priority Score:** 704.4
+- **Priority Score:** 710.0
 - **Functions:** 6/6 matched (target 37)
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
 
-### 5. format
+### 5. icu_decimal.format
 
 - **Target:** `icudecimal.FormattedDecimal`
 - **Similarity:** 0.22
@@ -105,6 +105,6 @@ do not treat them as the next implementation target by default.
 
 | Source | Target | Path |
 |--------|--------|------|
-| `parts` | `parts.Parts` | `parts` |
-| `size_test_macro` | `icudecimal.SizeTestMacro` | `size_test_macro` |
+| `icu_decimal.parts` | `parts.Parts` | `icu_decimal/src/parts` |
+| `icu_decimal.size_test_macro` | `icudecimal.SizeTestMacro` | `icu_decimal/src/size_test_macro` |
 
