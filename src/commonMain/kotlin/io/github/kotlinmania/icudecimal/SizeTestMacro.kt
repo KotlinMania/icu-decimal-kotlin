@@ -1,4 +1,4 @@
-// port-lint: source size_test_macro.rs
+// port-lint: source icu_decimal/src/size_test_macro.rs
 package io.github.kotlinmania.icudecimal
 
 /**
