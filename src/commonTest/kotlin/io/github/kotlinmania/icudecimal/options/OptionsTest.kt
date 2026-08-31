@@ -1,4 +1,4 @@
-// port-lint: tests icu_decimal/src/options.rs
+// port-lint: tests options.rs
 package io.github.kotlinmania.icudecimal.options
 
 import kotlin.test.Test

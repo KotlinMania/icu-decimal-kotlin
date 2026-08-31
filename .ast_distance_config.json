@@ -15,5 +15,10 @@
     "todos": true,
     "lint": true
   },
-  "reexport_modules": ["parts", "size_test_macro"]
+  "reexport_modules": [
+    "parts",
+    "parts.rs",
+    "size_test_macro",
+    "size_test_macro.rs"
+  ]
 }
