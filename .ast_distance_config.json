@@ -19,6 +19,14 @@
     "parts",
     "parts.rs",
     "size_test_macro",
-    "size_test_macro.rs"
+    "size_test_macro.rs",
+    "icu_decimal/src/parts.rs",
+    "icu_decimal/src/size_test_macro.rs",
+    "icu_decimal.parts",
+    "icu_decimal.size_test_macro",
+    "icu_decimal::parts",
+    "icu_decimal::size_test_macro",
+    "icu_decimal/parts",
+    "icu_decimal/size_test_macro"
   ]
 }
