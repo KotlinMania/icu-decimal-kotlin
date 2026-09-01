@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 7/7 (100.0%)
-- **Function parity:** 19/20 matched (target 58) — 95.0%
-- **Class/type parity:** 9/10 matched (target 21) — 90.0%
-- **Combined symbol parity:** 28/30 matched (target 79) — 93.3%
-- **Average inline-code cosine:** 0.38 (function body across 6 matched files)
-- **Average documentation cosine:** 0.64 (doc text across 6 matched files)
+- **Files Present:** 8/8 (100.0%)
+- **Function parity:** 21/22 matched (target 62) — 95.5%
+- **Class/type parity:** 9/10 matched (target 22) — 90.0%
+- **Combined symbol parity:** 30/32 matched (target 84) — 93.8%
+- **Average inline-code cosine:** 0.40 (function body across 7 matched files)
+- **Average documentation cosine:** 0.55 (doc text across 7 matched files)
 - **Cheat-zeroed Files:** 1
-- **Critical Issues:** 5 files with <0.60 function similarity
+- **Critical Issues:** 6 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -27,9 +27,9 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. grouper
+### 1. icu_decimal.grouper
 
-- **Target:** `grouper.Grouper [PROVENANCE-FALLBACK]`
+- **Target:** `grouper.Grouper`
 - **Similarity:** 0.41
 - **Dependents:** 1
 - **Priority Score:** 1020505.9
@@ -38,15 +38,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/2 matched
 - **Missing types:** `Provider`
 - **Tests:** 1/1 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `icu_decimal/src/grouper.rs` vs expected `grouper.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:icu_decimal/src/grouper.rs` vs expected `grouper.rs`
-- **Proposed provenance header:** `// port-lint: source grouper.rs` (current: `// port-lint: source icu_decimal/src/grouper.rs`)
-- **Proposed provenance header:** `// port-lint: tests grouper.rs` (current: `// port-lint: tests icu_decimal/src/grouper.rs`)
-- **Lint issues:** 2
 
-### 2. options
+### 2. icu_decimal.options
 
-- **Target:** `options.Options [PROVENANCE-FALLBACK]`
+- **Target:** `options.Options`
 - **Similarity:** 0.90
 - **Dependents:** 1
 - **Priority Score:** 1000300.9
@@ -54,15 +49,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `icu_decimal/src/options.rs` vs expected `options.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:icu_decimal/src/options.rs` vs expected `options.rs`
-- **Proposed provenance header:** `// port-lint: source options.rs` (current: `// port-lint: source icu_decimal/src/options.rs`)
-- **Proposed provenance header:** `// port-lint: tests options.rs` (current: `// port-lint: tests icu_decimal/src/options.rs`)
-- **Lint issues:** 2
 
-### 3. provider
+### 3. icu_decimal.provider
 
-- **Target:** `provider.Provider [PROVENANCE-FALLBACK]`
+- **Target:** `provider.Provider`
 - **Similarity:** 0.74
 - **Dependents:** 0
 - **Priority Score:** 1102.6
@@ -70,15 +60,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 4/4 matched (target 9)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `icu_decimal/src/provider.rs` vs expected `provider.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:icu_decimal/src/provider.rs` vs expected `provider.rs`
-- **Proposed provenance header:** `// port-lint: source provider.rs` (current: `// port-lint: source icu_decimal/src/provider.rs`)
-- **Proposed provenance header:** `// port-lint: tests provider.rs` (current: `// port-lint: tests icu_decimal/src/provider.rs`)
-- **Lint issues:** 2
 
-### 4. lib
+### 4. icu_decimal.lib
 
-- **Target:** `icudecimal.DecimalFormatter [STUB] [PROVENANCE-FALLBACK]`
+- **Target:** `icudecimal.DecimalFormatter [STUB]`
 - **Similarity:** 0.00
 - **Dependents:** 0
 - **Priority Score:** 710.0
@@ -87,15 +72,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/1 matched (target 3)
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `icu_decimal/src/lib.rs` vs expected `lib.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:icu_decimal/src/lib.rs` vs expected `lib.rs`
-- **Proposed provenance header:** `// port-lint: source lib.rs` (current: `// port-lint: source icu_decimal/src/lib.rs`)
-- **Proposed provenance header:** `// port-lint: tests lib.rs` (current: `// port-lint: tests icu_decimal/src/lib.rs`)
-- **Lint issues:** 2
 
-### 5. format
+### 5. icu_decimal.format
 
-- **Target:** `icudecimal.FormattedDecimal [PROVENANCE-FALLBACK]`
+- **Target:** `icudecimal.FormattedDecimal`
 - **Similarity:** 0.22
 - **Dependents:** 0
 - **Priority Score:** 407.8
@@ -104,11 +84,17 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `icu_decimal/src/format.rs` vs expected `format.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:icu_decimal/src/format.rs` vs expected `format.rs`
-- **Proposed provenance header:** `// port-lint: source format.rs` (current: `// port-lint: source icu_decimal/src/format.rs`)
-- **Proposed provenance header:** `// port-lint: tests format.rs` (current: `// port-lint: tests icu_decimal/src/format.rs`)
-- **Lint issues:** 2
+
+### 6. benches.fixed_decimal_format
+
+- **Target:** `icudecimal.FixedDecimalFormatBenchTest`
+- **Similarity:** 0.54
+- **Dependents:** 0
+- **Priority Score:** 204.6
+- **Functions:** 2/2 matched (target 4)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
 
 ## Success Criteria
 
@@ -130,6 +116,6 @@ do not treat them as the next implementation target by default.
 
 | Source | Target | Path |
 |--------|--------|------|
-| `parts` | `parts.Parts` | `parts` |
-| `size_test_macro` | `icudecimal.SizeTestMacro` | `size_test_macro` |
+| `icu_decimal.parts` | `parts.Parts` | `icu_decimal/src/parts` |
+| `icu_decimal.size_test_macro` | `icudecimal.SizeTestMacro` | `icu_decimal/src/size_test_macro` |
 
