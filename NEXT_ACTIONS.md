@@ -4,10 +4,10 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 7/8 (87.5%)
-- **Function parity:** 19/22 matched (target 62) — 86.4%
+- **Files Present:** 7/7 (100.0%)
+- **Function parity:** 19/20 matched (target 62) — 95.0%
 - **Class/type parity:** 9/10 matched (target 22) — 90.0%
-- **Combined symbol parity:** 28/32 matched (target 84) — 87.5%
+- **Combined symbol parity:** 28/30 matched (target 84) — 93.3%
 - **Average inline-code cosine:** 0.40 (function body across 7 matched files)
 - **Average documentation cosine:** 0.64 (doc text across 7 matched files)
 - **Cheat-zeroed Files:** 0
@@ -29,7 +29,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 1. grouper
 
-- **Target:** `grouper.Grouper [PROVENANCE-FALLBACK]`
+- **Target:** `grouper.Grouper`
 - **Similarity:** 0.41
 - **Dependents:** 1
 - **Priority Score:** 1020505.9
@@ -38,15 +38,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/2 matched
 - **Missing types:** `Provider`
 - **Tests:** 1/1 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `grouper.rs` vs expected `grouper.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:grouper.rs` vs expected `grouper.rs`
-- **Proposed provenance header:** `// port-lint: source grouper.rs` (current: `// port-lint: source grouper.rs`)
-- **Proposed provenance header:** `// port-lint: tests grouper.rs` (current: `// port-lint: tests grouper.rs`)
-- **Lint issues:** 2
 
 ### 2. options
 
-- **Target:** `options.Options [PROVENANCE-FALLBACK]`
+- **Target:** `options.Options`
 - **Similarity:** 0.90
 - **Dependents:** 1
 - **Priority Score:** 1000300.9
@@ -54,15 +49,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `options.rs` vs expected `options.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:options.rs` vs expected `options.rs`
-- **Proposed provenance header:** `// port-lint: source options.rs` (current: `// port-lint: source options.rs`)
-- **Proposed provenance header:** `// port-lint: tests options.rs` (current: `// port-lint: tests options.rs`)
-- **Lint issues:** 2
 
 ### 3. provider
 
-- **Target:** `provider.Provider [PROVENANCE-FALLBACK]`
+- **Target:** `provider.Provider`
 - **Similarity:** 0.74
 - **Dependents:** 0
 - **Priority Score:** 1102.6
@@ -70,15 +60,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 4/4 matched (target 9)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `provider.rs` vs expected `provider.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:provider.rs` vs expected `provider.rs`
-- **Proposed provenance header:** `// port-lint: source provider.rs` (current: `// port-lint: source provider.rs`)
-- **Proposed provenance header:** `// port-lint: tests provider.rs` (current: `// port-lint: tests provider.rs`)
-- **Lint issues:** 2
 
 ### 4. lib
 
-- **Target:** `icudecimal.DecimalFormatter [PROVENANCE-FALLBACK]`
+- **Target:** `icudecimal.DecimalFormatter`
 - **Similarity:** 0.56
 - **Dependents:** 0
 - **Priority Score:** 704.4
@@ -87,17 +72,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `lib.rs` vs expected `lib.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:lib.rs` vs expected `lib.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:lib.rs` vs expected `lib.rs`
-- **Proposed provenance header:** `// port-lint: source lib.rs` (current: `// port-lint: source lib.rs`)
-- **Proposed provenance header:** `// port-lint: tests lib.rs` (current: `// port-lint: tests lib.rs`)
-- **Proposed provenance header:** `// port-lint: tests lib.rs` (current: `// port-lint: tests lib.rs`)
-- **Lint issues:** 3
 
 ### 5. format
 
-- **Target:** `icudecimal.FormattedDecimal [PROVENANCE-FALLBACK]`
+- **Target:** `icudecimal.FormattedDecimal`
 - **Similarity:** 0.22
 - **Dependents:** 0
 - **Priority Score:** 407.8
@@ -106,11 +84,6 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `format.rs` vs expected `format.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:format.rs` vs expected `format.rs`
-- **Proposed provenance header:** `// port-lint: source format.rs` (current: `// port-lint: source format.rs`)
-- **Proposed provenance header:** `// port-lint: tests format.rs` (current: `// port-lint: tests format.rs`)
-- **Lint issues:** 2
 
 ## Success Criteria
 
@@ -132,6 +105,6 @@ do not treat them as the next implementation target by default.
 
 | Source | Target | Path |
 |--------|--------|------|
-| `parts` | `parts.Parts` | `src/parts` |
-| `size_test_macro` | `icudecimal.SizeTestMacro` | `src/size_test_macro` |
+| `parts` | `parts.Parts` | `parts` |
+| `size_test_macro` | `icudecimal.SizeTestMacro` | `size_test_macro` |
 
