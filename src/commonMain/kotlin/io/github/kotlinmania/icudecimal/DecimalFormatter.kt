@@ -26,7 +26,6 @@ package io.github.kotlinmania.icudecimal
  * THIRD PARTY RIGHTS.
  */
 
-import io.github.kotlinmania.icudecimal.grouper.check
 import io.github.kotlinmania.icudecimal.input.Decimal
 import io.github.kotlinmania.icudecimal.options.DecimalFormatterOptions
 import io.github.kotlinmania.icudecimal.options.GroupingStrategy
@@ -37,12 +36,18 @@ import kotlin.native.HiddenFromObjC
 
 /**
  * Preferences for decimal formatting.
+ *
+ * Corresponds to `DecimalFormatterPreferences` in upstream ICU4X.
  */
 @HiddenFromObjC
 data class DecimalFormatterPreferences(
     /** The preferred locale identifier. */
     val locale: String = "en-US",
-    /** The user's preferred numbering system (e.g. "latn", "arab", "beng", "thai"). */
+    /**
+     * The user's preferred numbering system (e.g. "latn", "arab", "beng", "thai").
+     *
+     * Corresponds to the `-u-nu` keyword in Unicode Locale Identifier.
+     */
     val numberingSystem: String? = null,
 ) {
     companion object {
@@ -51,12 +56,15 @@ data class DecimalFormatterPreferences(
 }
 
 /**
- * A formatter for [Decimal], rendering decimal digits with locale-style
- * grouping separators and decimal symbols.
+ * A formatter for [Decimal], rendering decimal digits in an i18n-friendly way.
  *
- * [DecimalFormatter] supports rendering in the requested numbering system,
- * locale-sensitive grouping separators, and locale-sensitive plus and minus
- * signs for the bundled decimal data.
+ * [DecimalFormatter] supports:
+ *
+ * 1. Rendering in the local numbering system
+ * 2. Locale-sensitive grouping separator positions
+ * 3. Locale-sensitive plus and minus signs
+ *
+ * See crate-level documentation for examples.
  */
 class DecimalFormatter private constructor(
     private val options: DecimalFormatterOptions,
@@ -71,53 +79,18 @@ class DecimalFormatter private constructor(
     /**
      * Formats a [Decimal], returning a [FormattedDecimal].
      */
-    fun format(value: Decimal): FormattedDecimal {
-        val builder = DecimalPartsBuilder()
-        val hasSign = value.isNegative && !value.isZero
-        if (hasSign) {
-            val affixes = symbols.minusSignAffixes()
-            builder.append(signPart(isNegative = true), affixes.prefix)
-        }
-
-        appendIntegerAndFraction(builder, value)
-
-        if (hasSign) {
-            val affixes = symbols.minusSignAffixes()
-            builder.append(signPart(isNegative = true), affixes.suffix)
-        }
-        return builder.build()
-    }
+    fun format(value: Decimal): FormattedDecimal =
+        FormattedDecimal(
+            value = value,
+            options = options,
+            symbols = symbols,
+            digits = digits,
+        )
 
     /**
      * Formats a [Decimal], returning a [String].
      */
     fun formatToString(value: Decimal): String = format(value).toString()
-
-    private fun appendIntegerAndFraction(builder: DecimalPartsBuilder, value: Decimal) {
-        val upperMagnitude = maxOf(value.upperMagnitude, 0)
-        for (magnitude in upperMagnitude downTo 0) {
-            builder.append(integerPart(), mappedDigit(value.digitAt(magnitude)))
-            if (
-                check(
-                    upperMagnitude = upperMagnitude.toShort(),
-                    magnitude = magnitude.toShort(),
-                    strategy = options.groupingStrategy ?: GroupingStrategy.Auto,
-                    sizes = symbols.groupingSizes,
-                )
-            ) {
-                builder.append(groupPart(), symbols.groupingSeparator())
-            }
-        }
-
-        if (value.magnitudeShift < 0) {
-            builder.append(decimalPart(), symbols.decimalSeparator())
-            for (magnitude in -1 downTo value.magnitudeShift) {
-                builder.append(fractionPart(), mappedDigit(value.digitAt(magnitude)))
-            }
-        }
-    }
-
-    private fun mappedDigit(digit: Int): String = digits[digit].toString()
 
     companion object {
         private val LATIN_DIGITS = listOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
