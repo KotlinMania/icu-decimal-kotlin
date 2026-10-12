@@ -5,13 +5,13 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 7/7 (100.0%)
-- **Function parity:** 19/20 matched (target 62) — 95.0%
+- **Function parity:** 19/20 matched (target 63) — 95.0%
 - **Class/type parity:** 9/10 matched (target 22) — 90.0%
-- **Combined symbol parity:** 28/30 matched (target 84) — 93.3%
-- **Average inline-code cosine:** 0.40 (function body across 7 matched files)
+- **Combined symbol parity:** 28/30 matched (target 85) — 93.3%
+- **Average inline-code cosine:** 0.45 (function body across 7 matched files)
 - **Average documentation cosine:** 0.64 (doc text across 7 matched files)
 - **Cheat-zeroed Files:** 0
-- **Critical Issues:** 5 files with <0.60 function similarity
+- **Critical Issues:** 4 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -64,10 +64,10 @@ Every matched file is listed below with function and type symbol parity.
 ### 4. lib
 
 - **Target:** `icudecimal.DecimalFormatter`
-- **Similarity:** 0.56
+- **Similarity:** 0.63
 - **Dependents:** 0
-- **Priority Score:** 704.4
-- **Functions:** 6/6 matched (target 35)
+- **Priority Score:** 703.7
+- **Functions:** 6/6 matched (target 33)
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
@@ -76,10 +76,10 @@ Every matched file is listed below with function and type symbol parity.
 ### 5. format
 
 - **Target:** `icudecimal.FormattedDecimal`
-- **Similarity:** 0.22
+- **Similarity:** 0.45
 - **Dependents:** 0
-- **Priority Score:** 407.8
-- **Functions:** 3/3 matched (target 13)
+- **Priority Score:** 405.5
+- **Functions:** 3/3 matched (target 16)
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
