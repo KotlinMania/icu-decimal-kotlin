@@ -32,11 +32,13 @@ internal fun check(
     val minGrouping =
         when (strategy) {
             GroupingStrategy.Never -> return false
+
             // Auto and Always are the same for DecimalFormatter. When currencies
             // are implemented, this will change.
             GroupingStrategy.Auto,
             GroupingStrategy.Always,
             -> maxOf(1, sizes.minGrouping.toInt())
+
             GroupingStrategy.Min2 -> maxOf(2, sizes.minGrouping.toInt())
         }
     if (upperMagnitude.toInt() < primary + minGrouping - 1) {

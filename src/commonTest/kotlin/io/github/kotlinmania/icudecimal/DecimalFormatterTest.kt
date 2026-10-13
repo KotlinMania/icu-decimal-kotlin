@@ -146,9 +146,9 @@ class DecimalFormatterTest {
             return formatter.format(Decimal.from(value)).toString()
         }
 
-        fun formatScaled(n: Long, scale: Long, fractionDigits: Int): String {
+        fun formatScaled(num: Long, scale: Long, fractionDigits: Int): String {
             val scaled =
-                round((n.toDouble() / scale.toDouble()) * 10.0.pow(fractionDigits))
+                round((num.toDouble() / scale.toDouble()) * 10.0.pow(fractionDigits))
                     .toLong()
             val decimal = Decimal.from(scaled)
             decimal.multiplyPow10(-fractionDigits)
