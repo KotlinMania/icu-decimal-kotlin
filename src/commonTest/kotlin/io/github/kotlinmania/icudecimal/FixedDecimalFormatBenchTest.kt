@@ -12,7 +12,7 @@ class FixedDecimalFormatBenchTest {
     private fun triangularNums(range: Double): List<Long> {
         val random = Random(2020)
         val nums = mutableListOf<Long>()
-        for (i in 0 until 1000) {
+        repeat(1000) {
             // Approximation of triangular distribution around 0
             val u1 = random.nextDouble()
             val u2 = random.nextDouble()

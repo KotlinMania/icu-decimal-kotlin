@@ -183,28 +183,34 @@ class DecimalFormatter private constructor(
             val language = normalized.substringBefore('-')
             val numberingSystem = numberingSystemFromLocale(normalized)
             return when {
-                language == "bn" ->
+                language == "bn" -> {
                     decimalSymbols(
                         decimalSeparator = ".",
                         groupingSeparator = ",",
                         numsys = resolvedNumberingSystem(numberingSystem, default = "beng"),
                         groupingSizes = GroupingSizes(primary = 3u, secondary = 2u, minGrouping = 1u),
                     )
-                normalized.startsWith("ar-eg-u-nu-latn") ->
+                }
+
+                normalized.startsWith("ar-eg-u-nu-latn") -> {
                     decimalSymbols(
                         decimalSeparator = ".",
                         groupingSeparator = ",",
                         numsys = "latn",
                         groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
                     )
-                language == "ar" ->
+                }
+
+                language == "ar" -> {
                     decimalSymbols(
                         decimalSeparator = "٫",
                         groupingSeparator = "٬",
                         numsys = "arab",
                         groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
                     )
-                else ->
+                }
+
+                else -> {
                     decimalSymbols(
                         decimalSeparator = ".",
                         groupingSeparator = ",",
@@ -215,6 +221,7 @@ class DecimalFormatter private constructor(
                             ),
                         groupingSizes = GroupingSizes(primary = 3u, secondary = 3u, minGrouping = 1u),
                     )
+                }
             }
         }
 
