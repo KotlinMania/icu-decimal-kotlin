@@ -9,6 +9,3 @@ package io.github.kotlinmania.icudecimal
  * misleading runtime assertion.
  */
 internal const val DECIMAL_FORMATTER_STACK_SIZE_BYTES: Int = 96
-
-internal fun decimalFormatterSizeDescription(): String =
-    "This item has a stack size of $DECIMAL_FORMATTER_STACK_SIZE_BYTES bytes on the stable toolchain at release date."

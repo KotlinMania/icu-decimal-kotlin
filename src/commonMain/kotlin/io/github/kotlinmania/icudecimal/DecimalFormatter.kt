@@ -1,4 +1,3 @@
-// port-lint: source lib.rs
 @file:OptIn(kotlin.experimental.ExperimentalObjCRefinement::class)
 
 package io.github.kotlinmania.icudecimal
@@ -32,6 +31,8 @@ import io.github.kotlinmania.icudecimal.options.GroupingStrategy
 import io.github.kotlinmania.icudecimal.provider.DecimalSymbolStrsBuilder
 import io.github.kotlinmania.icudecimal.provider.DecimalSymbols
 import io.github.kotlinmania.icudecimal.provider.GroupingSizes
+import io.github.kotlinmania.iculocalecore.Locale
+import io.github.kotlinmania.iculocalecore.preferences.extensions.unicode.keywords.NumberingSystem
 import kotlin.native.HiddenFromObjC
 
 /**
@@ -50,8 +51,24 @@ data class DecimalFormatterPreferences(
      */
     val numberingSystem: String? = null,
 ) {
+    /**
+     * Secondary constructor accepting typed [Locale] and [NumberingSystem].
+     */
+    constructor(locale: Locale, numberingSystem: NumberingSystem? = null) : this(
+        locale = locale.toString(),
+        numberingSystem = numberingSystem?.subtag?.value,
+    )
+
+    /**
+     * Typed [NumberingSystem] preference if set and well-formed.
+     */
+    val preferredNumberingSystem: NumberingSystem?
+        get() = numberingSystem?.let { NumberingSystem.tryFromStr(it).getOrNull() }
+
     companion object {
         fun from(locale: String): DecimalFormatterPreferences = DecimalFormatterPreferences(locale = locale)
+
+        fun from(locale: Locale): DecimalFormatterPreferences = DecimalFormatterPreferences(locale = locale.toString())
     }
 }
 
@@ -104,6 +121,15 @@ class DecimalFormatter private constructor(
          */
         fun tryNew(locale: String = "en-US"): DecimalFormatter =
             create(locale, DecimalFormatterOptions())
+
+        /**
+         * Creates a new [DecimalFormatter] from a [Locale] and options.
+         */
+        @HiddenFromObjC
+        fun tryNew(
+            locale: Locale,
+            options: DecimalFormatterOptions = DecimalFormatterOptions(),
+        ): DecimalFormatter = create(locale.toString(), options)
 
         /**
          * Creates a new [DecimalFormatter] from locale preferences and options.
@@ -180,8 +206,16 @@ class DecimalFormatter private constructor(
 
         private fun symbolsFor(locale: String): DecimalSymbols {
             val normalized = locale.ifBlank { "en" }.lowercase()
-            val language = normalized.substringBefore('-')
-            val numberingSystem = numberingSystemFromLocale(normalized)
+            val parsedLocale = Locale.tryFromStr(normalized).getOrNull()
+            val language = parsedLocale?.id?.language?.value ?: normalized.substringBefore('-')
+            val numberingSystem =
+                parsedLocale
+                    ?.extensions
+                    ?.unicode
+                    ?.keywords
+                    ?.get(NumberingSystem.KEY)
+                    ?.toString()
+                    ?: numberingSystemFromLocale(normalized)
             return when {
                 language == "bn" -> {
                     decimalSymbols(
@@ -246,7 +280,16 @@ class DecimalFormatter private constructor(
             )
 
         private fun digitsFor(locale: String, symbols: DecimalSymbols): List<Char> {
-            val requested = numberingSystemFromLocale(locale.lowercase())
+            val normalized = locale.lowercase()
+            val parsedLocale = Locale.tryFromStr(normalized).getOrNull()
+            val requested =
+                parsedLocale
+                    ?.extensions
+                    ?.unicode
+                    ?.keywords
+                    ?.get(NumberingSystem.KEY)
+                    ?.toString()
+                    ?: numberingSystemFromLocale(normalized)
             val numsys = resolvedNumberingSystem(requested, default = symbols.numsys())
             return when (numsys) {
                 "arab" -> ARAB_DIGITS

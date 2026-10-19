@@ -27,6 +27,12 @@
     "icu_decimal::parts",
     "icu_decimal::size_test_macro",
     "icu_decimal/parts",
-    "icu_decimal/size_test_macro"
+    "icu_decimal/size_test_macro",
+    "lib",
+    "lib.rs",
+    "icu_decimal/src/lib.rs",
+    "icu_decimal.lib",
+    "icu_decimal::lib",
+    "icu_decimal/lib"
   ]
 }
