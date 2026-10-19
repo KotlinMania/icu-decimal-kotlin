@@ -1,4 +1,3 @@
-// port-lint: tests lib.rs
 package io.github.kotlinmania.icudecimal
 
 import io.github.kotlinmania.icudecimal.input.Decimal
@@ -9,6 +8,8 @@ import io.github.kotlinmania.icudecimal.parts.FRACTION
 import io.github.kotlinmania.icudecimal.parts.GROUP
 import io.github.kotlinmania.icudecimal.parts.INTEGER
 import io.github.kotlinmania.icudecimal.parts.MINUS_SIGN
+import io.github.kotlinmania.iculocalecore.Locale
+import io.github.kotlinmania.iculocalecore.preferences.extensions.unicode.keywords.NumberingSystem
 import kotlin.math.pow
 import kotlin.math.round
 import kotlin.test.Test
@@ -63,9 +64,13 @@ class DecimalFormatterTest {
 
     @Test
     fun formatsNumberingResolutionFallbackCases() {
-        fun testLocale(locale: String, expected: String) {
-            val formatter = DecimalFormatter.tryNew(locale, DecimalFormatterOptions())
-            assertEquals(expected, formatter.format(Decimal.from(1234)).toString(), locale)
+        fun testLocale(localeStr: String, expected: String) {
+            val locale = Locale.parse(localeStr).getOrThrow()
+            val formatterFromLocale = DecimalFormatter.tryNew(locale, DecimalFormatterOptions())
+            val formatterFromStr = DecimalFormatter.tryNew(localeStr, DecimalFormatterOptions())
+            val dec = Decimal.from(1234)
+            assertEquals(expected, formatterFromLocale.format(dec).toString(), localeStr)
+            assertEquals(expected, formatterFromStr.format(dec).toString(), localeStr)
         }
 
         testLocale("en", "1,234")
@@ -183,6 +188,13 @@ class DecimalFormatterTest {
         val formatter = DecimalFormatter.tryNew(prefs)
         val decimal = Decimal.from(1_000_007)
         assertEquals("\u0E51,\u0E50\u0E50\u0E50,\u0E50\u0E50\u0E57", formatter.format(decimal).toString())
+
+        val thLocale = Locale.parse("th").getOrThrow()
+        val thNumberingSystem = NumberingSystem.tryFromStr("thai").getOrThrow()
+        val typedPrefs = DecimalFormatterPreferences(locale = thLocale, numberingSystem = thNumberingSystem)
+        val typedFormatter = DecimalFormatter.tryNew(typedPrefs)
+        assertEquals("\u0E51,\u0E50\u0E50\u0E50,\u0E50\u0E50\u0E57", typedFormatter.format(decimal).toString())
+        assertEquals("thai", typedPrefs.preferredNumberingSystem?.subtag?.value)
     }
 
     @Test

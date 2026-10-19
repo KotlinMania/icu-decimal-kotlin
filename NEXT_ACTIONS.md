@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 7/7 (100.0%)
-- **Function parity:** 19/20 matched (target 63) — 95.0%
-- **Class/type parity:** 9/10 matched (target 22) — 90.0%
-- **Combined symbol parity:** 28/30 matched (target 85) — 93.3%
-- **Average inline-code cosine:** 0.45 (function body across 7 matched files)
-- **Average documentation cosine:** 0.64 (doc text across 7 matched files)
+- **Files Present:** 6/7 (85.7%)
+- **Function parity:** 13/14 matched (target 30) — 92.9%
+- **Class/type parity:** 8/9 matched (target 18) — 88.9%
+- **Combined symbol parity:** 21/23 matched (target 48) — 91.3%
+- **Average inline-code cosine:** 0.76 (function body across 6 matched files)
+- **Average documentation cosine:** 0.65 (doc text across 6 matched files)
 - **Cheat-zeroed Files:** 0
-- **Critical Issues:** 4 files with <0.60 function similarity
+- **Critical Issues:** 2 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -61,24 +61,12 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/4 matched (target 9)
 - **Missing types:** _none_
 
-### 4. lib
-
-- **Target:** `icudecimal.DecimalFormatter`
-- **Similarity:** 0.63
-- **Dependents:** 0
-- **Priority Score:** 703.7
-- **Functions:** 6/6 matched (target 33)
-- **Missing functions:** _none_
-- **Types:** 1/1 matched (target 4)
-- **Missing types:** _none_
-- **Tests:** 1/1 matched
-
-### 5. format
+### 4. format
 
 - **Target:** `icudecimal.FormattedDecimal`
-- **Similarity:** 0.45
+- **Similarity:** 0.51
 - **Dependents:** 0
-- **Priority Score:** 405.5
+- **Priority Score:** 404.9
 - **Functions:** 3/3 matched (target 16)
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
@@ -107,4 +95,10 @@ do not treat them as the next implementation target by default.
 |--------|--------|------|
 | `parts` | `parts.Parts` | `parts` |
 | `size_test_macro` | `icudecimal.SizeTestMacro` | `size_test_macro` |
+
+### Missing
+
+| Source | Expected target | Deps | Source path | Expected path |
+|--------|-----------------|------|-------------|---------------|
+| `lib` | `Lib` | 0 | `lib.rs` | `Lib.kt` |
 
